@@ -11,7 +11,7 @@ site_name = 'https://dvmn.org/referrals/U46hZWTK0Afeup3hj6GPiBHV5xfoNPWMAeW2K0ny
 friend_name = 'Artem'
 sender_name = 'Aleksandr'
 
-letter_template = ("""Привет, {friend_name}! {sender_name} приглашает тебя на сайт {site_name}!
+letter_template = """Привет, {friend_name}! {sender_name} приглашает тебя на сайт {site_name}!
 
 {site_name} — это новая версия онлайн-курса по программированию. 
 Изучаем Python и не только. Решаем задачи. Получаем ревью от преподавателя. 
@@ -26,23 +26,18 @@ letter_template = ("""Привет, {friend_name}! {sender_name} приглаш�
 Все проекты — они же решение наших задачек — можно разместить на твоём GitHub. Работодатели такое оценят. 
 
 Регистрируйся → {site_name}  
-На курсы, которые еще не вышли, можно подписаться и получить уведомление о релизе сразу на имейл."""
-                   .format(site_name=site_name, friend_name=friend_name, sender_name=sender_name))
+На курсы, которые еще не вышли, можно подписаться и получить 
+уведомление о релизе сразу на имейл.""".format(site_name=site_name, friend_name=friend_name, sender_name=sender_name)
 
-letter = ("""From: {senders_email}
+letter = """From: {senders_email}
 To: {recipients_email}
 Subject: Приглашение!
 Content-Type: text/plain; charset="UTF-8";
 
-{letter_template}"""
-          .format(letter_template=letter_template, senders_email=senders_email, recipients_email=recipients_email))
+{letter_template}""".format(letter_template=letter_template, senders_email=senders_email, recipients_email=recipients_email)
 letter = letter.encode("UTF-8")
 
 server = smtplib.SMTP_SSL('smtp.mail.ru:465')
 server.login(senders_email, password_email)
 server.sendmail(senders_email, recipients_email, letter)
 server.quit()
-
-
-
-
