@@ -16,7 +16,7 @@ monro_green_front = monro_green.crop(coordinates_center)
 monro_red = Image.blend(monro_red_front, monro_red_back, 0.6)
 monro_blue = Image.blend(monro_blue_front, monro_blue_back, 0.6)
 
-monro_image = Image.merge('RGB', (monro_red, monro_blue, monro_green_front))
+monro_image = Image.merge('RGB', (monro_red, monro_green_front, monro_blue))
 monro_image.save('monro_image.jpg', format='JPEG')
 monro_image.thumbnail((80, 80))
 monro_image.save('monro_avatar.jpg', format='JPEG')
