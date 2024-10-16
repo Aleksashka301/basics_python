@@ -1,0 +1,11 @@
+{name} живёт в {town}, по профессии {profession}.
+Обладает 
+Силой: {strength}
+Ловкостью: {agility}
+Выносливостью: {endurance}
+Интелектом: {intelligence}
+Удачей: {luck}
+Навыки
+{skill_1}
+{skill_2}
+{skill_3}
