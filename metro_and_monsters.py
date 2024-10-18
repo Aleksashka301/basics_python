@@ -117,7 +117,7 @@ def main():
         }
 
         file_operations.render_template("src/charsheet.svg",
-                                    "{folder}/form-{card}.svg".format(folder=folder, card=card_number), context)
+                            "{folder}/form-{card_number}.svg".format(folder=folder, card_number=card_number), context)
 
 
 if __name__ == '__main__':
