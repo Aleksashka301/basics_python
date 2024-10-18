@@ -71,52 +71,54 @@ RUNIC_ALPHABET = {
     'Э': 'Э͒͠͠',
     'Ю': 'Ю̋͠',
     'Я': 'Я̋',
-    ' ': ' '
+    ' ': ' ',
 }
 
 
-def main(card):
+def main():
     folder = 'output/svg/'
     os.makedirs(folder, exist_ok=True)
     faker = Faker('ru-RU')
-    skills = ['Стремительный прыжок',
-              'Электрический выстрел',
-              'Ледяной удар',
-              'Стремительный удар',
-              'Кислотный взгляд',
-              'Тайный побег',
-              'Ледяной выстрел',
-              'Огненный заряд']
-    random_skills = random.sample(skills, 3)
-    runic_skills = []
 
-    for element in random_skills:
-        skill = ''
-        for symbol in element:
-            skill += symbol.replace(symbol, RUNIC_ALPHABET[symbol])
-        runic_skills.append(skill)
+    for card in range(1, 11):
+        card_number = card
+        skills = ['Стремительный прыжок',
+                  'Электрический выстрел',
+                  'Ледяной удар',
+                  'Стремительный удар',
+                  'Кислотный взгляд',
+                  'Тайный побег',
+                  'Ледяной выстрел',
+                  'Огненный заряд',
+        ]
+        random_skills = random.sample(skills, 3)
+        runic_skills = []
+        for element in random_skills:
+            skill = ''
+            for symbol in element:
+                skill += symbol.replace(symbol, RUNIC_ALPHABET[symbol])
+            runic_skills.append(skill)
 
-    context = {
-        "first_name": faker.first_name(),
-        "last_name": faker.last_name(),
-        "town": faker.city(),
-        "job": faker.job(),
+        context = {
+            "first_name": faker.first_name(),
+            "last_name": faker.last_name(),
+            "town": faker.city(),
+            "job": faker.job(),
 
-        "strength": random.randint(3, 18),
-        "agility": random.randint(3, 18),
-        "endurance": random.randint(3, 18),
-        "intelligence": random.randint(3, 18),
-        "luck": random.randint(3, 18),
+            "strength": random.randint(3, 18),
+            "agility": random.randint(3, 18),
+            "endurance": random.randint(3, 18),
+            "intelligence": random.randint(3, 18),
+            "luck": random.randint(3, 18),
 
-        "skill_1": runic_skills[0],
-        "skill_2": runic_skills[1],
-        "skill_3": runic_skills[2],
-    }
+            "skill_1": runic_skills[0],
+            "skill_2": runic_skills[1],
+            "skill_3": runic_skills[2],
+        }
 
-    file_operations.render_template("src/charsheet.svg",
-                                    "{folder}/form-{card}.svg".format(folder=folder, card=card), context)
+        file_operations.render_template("src/charsheet.svg",
+                                    "{folder}/form-{card}.svg".format(folder=folder, card=card_number), context)
 
 
 if __name__ == '__main__':
-    for card in range(1, 11):
-        main(card)
+    main()
