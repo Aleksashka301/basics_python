@@ -4,11 +4,6 @@ from dotenv import load_dotenv, find_dotenv
 from pytimeparse import parse
 
 
-load_dotenv(find_dotenv())
-TG_TOKEN = os.getenv('TELEGRAM_TOKEN')
-TG_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
-
-
 def render_progressbar(total, iteration, prefix='', suffix='', length=20, fill='█', zfill='░'):
     iteration = min(total, iteration)
     percent = "{0:.1f}"
@@ -44,6 +39,10 @@ def wait_countdown(chat_id, message):
 
 
 if __name__ == '__main__':
+    load_dotenv(find_dotenv())
+    TG_TOKEN = os.getenv('TELEGRAM_TOKEN')
+    TG_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
+
     bot = ptbot.Bot(TG_TOKEN)
     bot.send_message(TG_CHAT_ID, 'Бот запущен!\nНа сколько поставить таймер?')
     bot.reply_on_message(wait_countdown)
