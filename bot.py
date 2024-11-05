@@ -20,17 +20,17 @@ def wait(chat_id, message):
 
 def countdown(chat_id, message):
     timer = parse(message)
-    message_id = bot.send_message(TG_CHAT_ID, f'Таймер запущен, осталось {timer} сек')
+    message_id = bot.send_message(tg_chat_id, f'Таймер запущен, осталось {timer} сек')
     bot.create_countdown(timer, countdown_result, chat_id=message_id, timer=timer)
 
 
 def countdown_result(secs_left, chat_id, timer):
-    bot.update_message(TG_CHAT_ID, chat_id, f'Таймер запущен, осталось {secs_left} сек\n'
+    bot.update_message(tg_chat_id, chat_id, f'Таймер запущен, осталось {secs_left} сек\n'
                                             f'{render_progressbar(timer, timer - secs_left)}')
 
 
 def bot_answer(chat_id, message):
-    bot.send_message(TG_CHAT_ID, 'Время вышло!')
+    bot.send_message(tg_chat_id, 'Время вышло!')
 
 
 def wait_countdown(chat_id, message):
@@ -40,11 +40,10 @@ def wait_countdown(chat_id, message):
 
 if __name__ == '__main__':
     load_dotenv(find_dotenv())
-    TG_TOKEN = os.getenv('TELEGRAM_TOKEN')
-    TG_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
+    tg_token = os.getenv('TELEGRAM_TOKEN')
+    tg_chat_id = os.getenv('TELEGRAM_CHAT_ID')
 
-    bot = ptbot.Bot(TG_TOKEN)
-    bot.send_message(TG_CHAT_ID, 'Бот запущен!\nНа сколько поставить таймер?')
+    bot = ptbot.Bot(tg_token)
+    bot.send_message(tg_chat_id, 'Бот запущен!\nНа сколько поставить таймер?')
     bot.reply_on_message(wait_countdown)
     bot.run_bot()
-
