@@ -63,7 +63,7 @@ if __name__ == '__main__':
     yandex_api = os.getenv('YANDEX_API')
     user_location = input('Укажите, где вы находитесь: ')
 
-    with open('coffee.json', 'r') as file_locations:
+    with open('coffee.json', 'r', encoding='CP1251') as file_locations:
         coffee_shops = file_locations.read()
 
     coffee_shops = json.loads(coffee_shops)
